@@ -1,0 +1,60 @@
+# ------------------------------------------------------------------------
+# 1. ARTEFACTOS GENERADOS POR MAVEN
+# ------------------------------------------------------------------------
+/target/
+Workbook_EJB/target/
+Workbook_Web/target
+pom.xml.tag
+pom.xml.bak
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildHistory.xml
+.maven_resource_naming
+
+# Ignorar archivos de caché generados por Surefire/Failsafe (pruebas)
+# Esto incluye los reportes de cobertura (JaCoCo)
+/surefire-reports/
+/failsafe-reports/
+/jacoco.exec
+
+# ------------------------------------------------------------------------
+# 2. METADATOS DE ECLIPSE IDE
+# ------------------------------------------------------------------------
+# Eclipse genera estos archivos para gestionar la configuración del proyecto
+.settings/
+.classpath
+.project
+*.launch
+*.sublime-project
+*.sublime-workspace
+
+# Carpeta de salida del binario de Eclipse
+/bin/
+
+# Metadatos generados por el plugin m2e (Maven Integration for Eclipse)
+.m2/
+.metadata/
+
+# Ignorar configuración de WTP (Web Tools Platform)
+.wtp/
+
+# ------------------------------------------------------------------------
+# 3. METADATOS DEL SERVIDOR (JBOSS/WILDFLY/EAP)
+# ------------------------------------------------------------------------
+# Ignorar las carpetas de despliegue directo de Eclipse/JBoss
+/servers/
+/*.ear.failed
+/*.war.failed
+/*.jar.failed
+*.ear.undeployed
+*.war.undeployed
+*.jar.undeployed
+
+# ------------------------------------------------------------------------
+# 4. DEPENDENCIAS EXTERNAS
+# ------------------------------------------------------------------------
+# Maven gestiona las dependencias, por lo que no deben ser añadidas al repositorio
+/lib/
