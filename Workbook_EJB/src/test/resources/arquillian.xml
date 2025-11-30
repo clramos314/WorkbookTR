@@ -1,0 +1,14 @@
+<arquillian xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <container default="jboss-managed">
+        <configuration target="jboss-managed">
+            <property name="jbossHome">D:\jboss-eap-7.2.0</property>
+            <property name="serverConfig">standalone-full.xml</property>
+
+            <property name="javaHome">C:\Users\clram\Java\java-1.8.0-openjdk-1.8.0.392-1.b08.redhat.windows.x86_64</property>
+        </configuration>
+    </container>
+
+</arquillian>

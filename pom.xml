@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cleon.workbook</groupId>
+    <artifactId>Workbook_EAR</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging> 
+    
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <junit.version>5.9.1</junit.version>
+        <arquillian.version>1.7.0.Final</arquillian.version>
+        
+        <javaee-api.version>7.0</javaee-api.version>
+    </properties>
+
+    <modules>
+        <module>Workbook_EJB</module>
+        <module>Workbook_Web</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>struts</groupId>
+                <artifactId>struts</artifactId>
+                <version>1.2.9</version> 
+                <scope>compile</scope> 
+            </dependency>
+            
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <version>6</version> <finalName>${project.artifactId}</finalName>
+                    <modules>
+                        <webModule>
+                            <groupId>com.cleon.workbook</groupId>
+                            <artifactId>Workbook_Web</artifactId>
+                            <contextRoot>/Workbook_Web</contextRoot>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>com.cleon.workbook</groupId>
+                            <artifactId>Workbook_EJB</artifactId>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
