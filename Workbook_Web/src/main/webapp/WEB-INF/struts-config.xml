@@ -10,14 +10,14 @@
     </form-beans>
 
     <action-mappings>
-        <action path="/calcular"
-                type="com.cleon.workbook.web.actions.CalculadoraAction"
-                name="calculadoraForm"
-                scope="request"
-                validate="false"> 
-            <forward name="success" path="/resultado.jsp"/>
-            <forward name="failure" path="/error.jsp"/>
-        </action>
+	    <action path="/calcular"
+	            type="com.cleon.workbook.web.actions.CalculadoraAction"
+	            name="calculadoraForm"
+	            scope="request"
+	            validate="true"   input="/index.jsp">
+	        <forward name="success" path="/resultado.jsp"/>
+	        <forward name="failure" path="/error.jsp"/>
+	    </action>
     </action-mappings>
     
     <message-resources parameter="ApplicationResources"/>

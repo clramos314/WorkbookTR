@@ -1,6 +1,9 @@
 package com.cleon.workbook.negocio;
 
 import com.cleon.workbook.persistencia.ResultadoCalculo;
+
+import java.util.logging.Logger; // Usamos el logger estándar
+
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.MapMessage;
@@ -24,12 +27,18 @@ activationConfig = {
 }
 )
 public class CalculadoraMDB implements MessageListener {
+	
+	// Instancia del Logger para el MDB
+    private static final Logger LOGGER = Logger.getLogger(CalculadoraMDB.class.getName());
 
     @PersistenceContext(unitName = "OraclePU")
     private EntityManager em;
 
     @Override
     public void onMessage(Message message) {
+    	// Mensaje recibido de la cola
+        LOGGER.info("MDB Recibido: Iniciando procesamiento asíncrono de un nuevo cálculo.");
+        
         try {
             // 1. Verificar y Castear el mensaje
             if (message instanceof MapMessage) {
@@ -39,6 +48,9 @@ public class CalculadoraMDB implements MessageListener {
                 double principal = mapMessage.getDouble("principal");
                 double tasa = mapMessage.getDouble("tasa");
                 int anios = mapMessage.getInt("anios");
+                
+                // Parámetros extraídos
+                LOGGER.info(String.format("MDB Datos: P=%f, T=%f, A=%d.", principal, tasa, anios));
 
                 // 3. Realizar la lógica de negocio y persistencia
                 
@@ -50,13 +62,14 @@ public class CalculadoraMDB implements MessageListener {
                 // El MDB se ejecuta en su propia transacción JTA, em.persist() funciona aquí.
                 em.persist(resultado);
 
-                System.out.println("✅ MDB: Cálculo asíncrono completado y resultado guardado: " + interesCalculado);
+                // Éxito y Persistencia
+                LOGGER.info("✅ ÉXITO: Cálculo completado y persistido. Interés: " + interesCalculado);
             }
         } catch (Exception e) {
-            // En un entorno de producción, aquí registrarías el error y manejarías la reentrega.
-            System.err.println("❌ Error procesando el mensaje JMS: " + e.getMessage());
-            // Lanzar RuntimeException podría causar rollback y reentrega
-            // throw new RuntimeException("Error MDB", e);
+        	// Error en Persistencia
+            LOGGER.severe("❌ ERROR JPA: Falló la persistencia en el MDB. Causa: " + e.getMessage());
+            // Se recomienda lanzar la RuntimeException para que la transacción JTA se deshaga.
+            throw new RuntimeException("Fallo en la persistencia del MDB", e);
         }
     }
 }
