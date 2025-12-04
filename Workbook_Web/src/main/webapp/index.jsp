@@ -1,10 +1,13 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <html>
 <head>
     <title>Calculadora de Intereses EJB</title>
 </head>
 <body>
     <h1>Calculadora de Intereses (Struts + EJB)</h1>
+    
+    <html:errors/>
     
     <html:form action="/calcular.do" method="POST">
     

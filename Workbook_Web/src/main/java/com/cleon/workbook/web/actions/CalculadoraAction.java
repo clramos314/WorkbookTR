@@ -1,5 +1,7 @@
 package com.cleon.workbook.web.actions;
 
+import java.util.logging.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +17,16 @@ import com.cleon.workbook.persistencia.ResultadoCalculo;
 import com.cleon.workbook.web.forms.CalculadoraForm;
 
 public class CalculadoraAction extends Action {
+	
+	// Instancia del Logger para el MDB
+    private static final Logger LOGGER = Logger.getLogger(CalculadoraAction.class.getName());
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, 
                                  HttpServletRequest request, HttpServletResponse response) 
                                  throws Exception {
+    	
+    	LOGGER.info("Ejecutando CalculadoraAction...");
 
         CalculadoraForm calcForm = (CalculadoraForm) form;
         Context ctx = null;
@@ -35,9 +42,9 @@ public class CalculadoraAction extends Action {
 
          // LLAMADA AL NUEVO MÉTODO
             ResultadoCalculo resultadoGuardado = calculadoraEJB.calcularYGuardarInteres(
-                calcForm.getPrincipal(), 
-                calcForm.getTasa(), 
-                calcForm.getAnios()
+                Double.parseDouble(calcForm.getPrincipal()), 
+                Double.parseDouble(calcForm.getTasa()), 
+                Integer.parseInt(calcForm.getAnios())
             );
 
             // Almacenar el resultado y el ID para la vista

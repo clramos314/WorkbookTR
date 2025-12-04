@@ -12,7 +12,12 @@ import javax.persistence.Table;
 @Table(name = "RESULTADOS") // Nombre de la tabla en la base de datos
 public class ResultadoCalculo implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1929232398005944315L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
