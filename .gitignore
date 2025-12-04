@@ -58,3 +58,8 @@ buildHistory.xml
 # ------------------------------------------------------------------------
 # Maven gestiona las dependencias, por lo que no deben ser añadidas al repositorio
 /lib/
+
+# ------------------------------------------------------------------------
+# 5. RESULTADOS SONARQUBE
+# ------------------------------------------------------------------------
+.scannerwork/

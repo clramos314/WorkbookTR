@@ -12,6 +12,11 @@
     <artifactId>Workbook_Web</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <sonar.projectKey>Workbook:Web</sonar.projectKey>
+        <sonar.projectName>Workbook Web Module</sonar.projectName>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>

@@ -19,6 +19,13 @@
         <arquillian.version>1.7.0.Final</arquillian.version>
         
         <javaee-api.version>7.0</javaee-api.version>
+
+        <sonar.projectKey>Workbook</sonar.projectKey>
+        <sonar.projectName>Workbook EAR Module</sonar.projectName>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        
+        <sonar.jacoco.reportPaths>Workbook_EJB/target/jacoco.exec</sonar.jacoco.reportPaths>
+        <sonar.junit.reportsPath>Workbook_EJB/target/surefire-reports</sonar.junit.reportsPath>
     </properties>
 
     <modules>
@@ -80,6 +87,12 @@
                         </ejbModule>
                     </modules>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version> 
             </plugin>
             
             <plugin>

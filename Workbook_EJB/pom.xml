@@ -12,6 +12,11 @@
     <artifactId>Workbook_EJB</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <sonar.projectKey>Workbook:EJB</sonar.projectKey> 
+        <sonar.projectName>Workbook EJB Module</sonar.projectName>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
